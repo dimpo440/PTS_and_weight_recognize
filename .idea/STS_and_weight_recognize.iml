@@ -5,4 +5,7 @@
     <orderEntry type="jdk" jdkName="Python 3.9 (PTS_and_weight_recognize)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="PackageRequirementsSettings">
+    <option name="requirementsPath" value="C:\Users\Митёк\PycharmProjects\PTS_and_weight_recognize\requirements.txt" />
+  </component>
 </module>
