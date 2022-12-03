@@ -20,8 +20,10 @@ class STS:
         img = self.rotate_sts(img)
         fields_imgs = self.yolo_sts_fields(img)
         if debug:
-            for i in range(len(fields_imgs)):
-                print(f'Field picture {i+1} recieved')
+            import cv2 as cv
+            for img in fields_imgs:
+                cv.imshow('field', img)
+                k = cv.waitKey(0)
         for i, field_img in enumerate(fields_imgs):
             fields_text[i] = self.ocr_recognize(field_img)
         return fields_text
