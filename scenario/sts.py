@@ -1,5 +1,6 @@
 from PIL import Image
 import aimodels.yolo as yolo
+import aimodels.paddle_ocr as po
 
 
 class STS:
@@ -37,5 +38,6 @@ class STS:
         return [crop['im'] for crop in result.crop(save=False)]
 
     def ocr_recognize(self, img):
-        text = 'recognizing not available'
-        return text
+        model = po.ModelLoader(weights=self.ocr_weights).model
+        text = model.ocr(img, det=False, rec=True, cls=False)
+        return text[0][0][0]
