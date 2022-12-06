@@ -19,7 +19,5 @@ class ModelLoader:
         return model
 
     def load_pretrained(self):
-        model = PaddleOCR(det_model_dir='test/weights/en_PP-OCRv3_det_slim_infer',
-                          ocr_version='PP-OCR',
-                          lang='en')
+        model = PaddleOCR(lang='en')
         return model

@@ -1,6 +1,7 @@
 from PIL import Image
 import aimodels.yolo as yolo
 import aimodels.paddle_ocr as po
+import aimodels.tr_ocr as trtrtr
 
 
 class STS:
@@ -14,7 +15,7 @@ class STS:
                            'im': None,
                            'txt': None}}
 
-    def detect_sts(self, img_path, debug=False):
+    def detect_sts(self, img_path, detect_model='paddle', debug=False):
         fields_text = {0: "",
                        1: ""}
         img = Image.open(img_path)
@@ -26,7 +27,7 @@ class STS:
                 cv.imshow('field', img)
                 k = cv.waitKey(0)
         for i, field_img in enumerate(fields_imgs):
-            fields_text[i] = self.ocr_recognize(field_img)
+            fields_text[i] = self.ocr_recognize(field_img, detect_model)
         return fields_text
 
     def rotate_sts(self, img):
@@ -37,7 +38,13 @@ class STS:
         result = model(img)
         return [crop['im'] for crop in result.crop(save=False)]
 
-    def ocr_recognize(self, img):
-        model = po.ModelLoader(weights=self.ocr_weights).model
-        text = model.ocr(img, det=False, rec=True, cls=False)
-        return text[0][0][0]
+    def ocr_recognize(self, img, detect_model):
+        if detect_model=='paddle':
+            model = po.ModelLoader(weights=self.ocr_weights).model
+            text = model.ocr(img, det=False, rec=True, cls=False)
+            return text[0][0]  # [0]
+        elif detect_model=='tr':
+            model = trtrtr.ModelLoader(trained_model=self.ocr_weights)
+            return model.ocr(img)
+        else:
+            return detect_model + ' is not in the project'

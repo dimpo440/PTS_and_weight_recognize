@@ -1,4 +1,5 @@
-pillow~=9.2.0
+# PaddleOCR
+pillow~=9.3.0
 paddleocr>=2.0.1
 paddlepaddle>=2.1.2
 shapely
@@ -6,7 +7,6 @@ scikit-image
 imgaug
 pyclipper
 lmdb
-tqdm
 visualdl
 rapidfuzz
 opencv-contrib-python
@@ -27,14 +27,11 @@ ipython  # interactive notebook
 matplotlib>=3.2.2
 numpy>=1.18.5
 opencv-python>=4.1.1
-Pillow>=7.1.2
 psutil  # system resources
 PyYAML>=5.3.1
 requests>=2.23.0
 scipy>=1.4.1
 thop>=0.1.1  # FLOPs computation
-torch>=1.7.0  # see https://pytorch.org/get-started/locally (recommended)
-torchvision>=0.8.1
 tqdm>=4.64.0
 # protobuf<=3.20.1  # https://github.com/ultralytics/yolov5/issues/8012
 
@@ -67,3 +64,19 @@ seaborn>=0.11.0
 # pycocotools>=2.0  # COCO mAP
 # roboflow
 # ultralytics  # HUB https://hub.ultralytics.com
+
+
+# tr_ocr
+-f https://download.pytorch.org/whl/torch_stable.html
+-f https://dl.fbaipublicfiles.com/detectron2/wheels/cu110/torch1.7/index.html
+
+torch==1.7.1+cu110
+torchvision==0.8.2+cu110
+timm==0.4.5
+natsort
+nltk
+h5py
+fastwer
+transformers
+sentencepiece
+git+https://github.com/liminghao1630/fairseq.git
