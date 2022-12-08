@@ -23,6 +23,8 @@ in a [**Python>=3.7.0**](https://www.python.org/) environment
 ```
 
 ```python
+import scenario.sts
+
 YOLO_STS = 'YOUR_PATH'
 YOLO_ROTATE_STS = 'YOUR_PATH'
 OCR_WEIGHTS_STS = None # or 'YOUR_PATH'. Указать путь или None, чтобы использовать стандартные предобученные веса. If None pretrained weights will be used.
