@@ -21,7 +21,7 @@ in a [**Python>=3.7.0**](https://www.python.org/) environment
 !git clone https://github.com/dimpo440/PTS_and_weight_recognize  # clone
 !pip install -r PTS_and_weight_recognize/requirements.txt  # install
 ```
-
+Пример/example
 ```python
 import scenario.sts
 
