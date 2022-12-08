@@ -19,8 +19,7 @@ in a [**Python>=3.7.0**](https://www.python.org/) environment
 
 ```python
 !git clone https://github.com/dimpo440/PTS_and_weight_recognize  # clone
-!cd PTS_and_weight_recognize
-!pip install -r requirements.txt  # install
+!pip install -r PTS_and_weight_recognize/requirements.txt  # install
 ```
 
 ```python
