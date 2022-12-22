@@ -21,10 +21,8 @@ class Ves:
         values = []
         all_data = results.pandas().xyxy[0].values.tolist()
         for data in all_data:
-            x1 = (float(data[0]) * 2 * int(image.shape[1]) - int(image.shape[1]) * float(data[2])) / 2
-            x1 = round(int(x1))
             values.append(str(data[5]))
-            keys.append(x1)
+            keys.append(data[0])
 
         for i, n in enumerate(values):
             if n == '10':
