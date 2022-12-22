@@ -1,6 +1,5 @@
 import math
 import cv2
-import aimodels.yolo as yolo
 
 
 def rotate_image(mat, angle, point):
@@ -42,8 +41,7 @@ def get_angle_rotation(centre, point, target_angle):
     return (math.degrees(res) + target_angle) % 360  # возвращаем угол поворота для cv2
 
 
-def get_image_after_rotation(img, yolo_rotate_weights):
-    model = yolo.ModelLoader(weights=yolo_rotate_weights).model
+def get_image_after_rotation(img, model):
     results = model(img)
     pd = results.pandas().xyxy[0]
     pd = pd.assign(centre_x=pd.xmin + (pd.xmax - pd.xmin) / 2)
@@ -67,8 +65,8 @@ def get_image_after_rotation(img, yolo_rotate_weights):
     return rotate_image(img, angle, N)
 
 
-def get_rotated(img, yolo_rotate_weights):
+def get_rotated(img, model):
     image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    image = get_image_after_rotation(image, yolo_rotate_weights)
-    image = get_image_after_rotation(image, yolo_rotate_weights)  # второй подряд поворот еще лучше выравнивает.
+    image = get_image_after_rotation(image, model)
+    image = get_image_after_rotation(image, model)  # второй подряд поворот еще лучше выравнивает.
     return image
