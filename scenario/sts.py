@@ -11,11 +11,11 @@ class STS:
         self.rot_model = self.rotation_model_result
         self.det_model_processor = yolo.ModelLoader(weights=yolo_detect_weights).model
         self.det_model = self.detection_model_results
-        if recognition_model== 'paddle':
-            self.rec_model_processor = po.ModelLoader(weights=self.ocr_weights).model
+        if recognition_model == 'paddle':
+            self.rec_model_processor = po.ModelLoader(weights=ocr_weights).model
             self.rec_model = self.paddle_model_result
-        elif recognition_model== 'tr':
-            self.rec_model_processor = trtrtr.ModelLoader(trained_model=self.ocr_weights)
+        elif recognition_model == 'tr':
+            self.rec_model_processor = trtrtr.ModelLoader(trained_model=ocr_weights)
             self.rec_model = self.trocr_model_result
 
     def rotation_model_result(self, img):  # the result is rotated photo with sts
@@ -40,5 +40,3 @@ class STS:
         for i, field_img in enumerate(fields_imgs):
             fields_text[i] = self.rec_model(field_img)
         return fields_text
-
-
