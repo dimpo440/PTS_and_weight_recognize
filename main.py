@@ -1,4 +1,5 @@
-import scenario.sts, scenario.vesy
+import scenario.sts
+import scenario.vesy
 
 YOLO_STS = 'test/weights/yolo/sts_fields_best1.pt'
 YOLO_ROTATE_STS = 'test/weights/yolo/sts_rotation_best-11.pt'
