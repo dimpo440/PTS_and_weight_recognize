@@ -16,21 +16,9 @@ class Ves:
     def recognition_model_result(self, image):  # the result is text of the field
         self.rec_model_processor.conf = 0.1
         self.rec_model_processor.conf_thres = 0.7
-        results = self.rec_model_processor(image)
-        keys = []
-        values = []
-        all_data = results.pandas().xyxy[0].values.tolist()
-        for data in all_data:
-            values.append(str(data[5]))
-            keys.append(data[0])
-
-        for i, n in enumerate(values):
-            if n == '10':
-                values[i] = '.'
-        dictionary = dict(zip(keys, values))
-        dictionary = dict(sorted(dictionary.items()))
-        x = ''.join(list(dictionary.values()))
-        return x
+        results = self.rec_model_processor(image).pandas().xyxy[0].sort_values(by=["xmin"])
+        result = ''.join(map(lambda x: str(x) if x != 10 else '.', results["class"]))
+        return result
 
     def detect_ves(self, img_path):  # result is dictionary with fields
         fields_text = dict()

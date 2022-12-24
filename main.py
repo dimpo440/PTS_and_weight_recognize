@@ -7,7 +7,7 @@ STS_TEST_IMG = 'test/imgs/test_sts.jpg'
 DETECT_MODEL = DETECT_MODELS[0]
 YOLO_VES_DETECTION = 'test/weights/yolo/ves_detection_best-5.pt'
 YOLO_VES_RECOGNITION = 'test/weights/yolo/ves_recognition_best _11_ilya.pt'
-VES_TEST_IMG = 'test/imgs/vesy/parts_used_11_46_20_22462008_2.jpg'
+VES_TEST_IMG = 'test/imgs/vesy/parts_used_11_44_58_22445850_11.jpg'
 
 if __name__ == '__main__':
 
