@@ -1,12 +1,16 @@
-# PTS_and_weight_recognize
-Проект по распознаванию номера ТС и его VIN с фотографии СТС. Распознавание веса детали по её фотографии на весах скоро сделаем.
-На данный момент реализована только часть для обработки СТС.
+# Распознавание данных из фото документов и данных прибора на фото 
+В проекте два сценария:
+- по распознаванию номера ТС и его VIN с фотографии СТС
+- распознавание веса детали по её фотографии
 
 Для работы проекта необходимо иметь веса для yolov5 обученной на поиск требуемых полей на фото СТС и вторые веса, которые ищут слова "Свидетельство" и "ТС" для реализации функции поворота.
 
 Для распознавания текста в проекте встроены PaddleOCR и TRocr. Они могут работать на своих встроенных весах для распознавания печатного текста, либо можно подставить свои веса для конкретной задачи.
 
-This project created for detection and recognition of specific fields (sign and VIN) from a photo of car registration document issued in Russian Federation. Detection and recognition of weight data from photo of weights is coming soon. 
+# Data recognition on documents photo and mesurings data on photo
+There are two scenarios in project:
+- detection and recognition of specific fields (sign and VIN) from a photo
+- detection and recognition of weight data from photo of weights
 
 To make this project work you need to train yolov5 for fields detection and for detection of words "svidetelstvo" and "ts" in the header of the document (for rotation use). 
 
