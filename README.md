@@ -11,7 +11,7 @@ For text recognition it can be used PaddleOCR model or TRocr, both of them inclu
 
 <summary>Install</summary>
 
-Clone repo and install [requirements.txt](https://github.com/dimpo440/PTS_and_weight_recognize/requirements.txt)
+Clone repo and install [requirements.txt](https://github.com/dimpo440/PTS_and_weight_recognize/blob/main/requirements.txt)
 in a [**Python>=3.7.0**](https://www.python.org/) environment
 
 ```python
