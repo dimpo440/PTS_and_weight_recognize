@@ -1,4 +1,4 @@
-[Русский](https://github.com/dimpo440/PTS_and_weight_recognize/README_RU.md)
+[Русский](https://github.com/dimpo440/PTS_and_weight_recognize/blob/main/README_RU.md)
 
 # Data recognition on documents photo and mesurings data on photo
 There are two scenarios in project:
