@@ -1,7 +1,9 @@
-# PTS_and_weight_recognize
 [Русский](https://github.com/dimpo440/README_RU.md)
 
-This project created for detection and recognition of specific fields (sign and VIN) from a photo of car registration document issued in Russian Federation. Detection and recognition of weight data from photo of weights is coming soon. 
+# Data recognition on documents photo and mesurings data on photo
+There are two scenarios in project:
+- detection and recognition of specific fields (sign and VIN) from a photo
+- detection and recognition of weight data from photo of weights
 
 To make this project work you need to train yolov5 for fields detection and for detection of words "svidetelstvo" and "ts" in the header of the document (for rotation use). 
 
