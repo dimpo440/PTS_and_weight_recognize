@@ -1,3 +1,5 @@
+# Code made by my colleagues Elvira and Ivan
+
 import math
 import cv2
 

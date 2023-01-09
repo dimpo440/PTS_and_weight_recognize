@@ -2,7 +2,7 @@ import cv2 as cv
 import aimodels.yolo as yolo
 
 
-class Ves:
+class Weight:
     def __init__(self, yolo_detect_weights, yolo_recognition_weights):
         self.det_model_processor = yolo.ModelLoader(weights=yolo_detect_weights).model
         self.det_model = self.detection_model_results
@@ -20,7 +20,7 @@ class Ves:
         result = ''.join(map(lambda x: str(x) if x != 10 else '.', results["class"]))
         return result
 
-    def detect_ves(self, img_path):  # result is dictionary with fields
+    def detect_weight(self, img_path):  # result is dictionary with fields
         fields_text = dict()
         img = cv.imread(img_path)
         fields_imgs = self.det_model(img)
