@@ -14,9 +14,17 @@ class Weight:
         return [crop['im'] for crop in result.crop(save=False)]
 
     def recognition_model_result(self, image):  # the result is text of the field
+        # yolo inference settings
         self.rec_model_processor.conf = 0.1
         self.rec_model_processor.conf_thres = 0.7
-        results = self.rec_model_processor(image).pandas().xyxy[0].sort_values(by=["xmin"])
+
+        results = self.rec_model_processor(image).pandas().xyxy[0]
+
+        # cleaning unnecessary dots and sorting from left to right
+        dots = results[results['class'] == 10].sort_values(by=['confidence'], ascending=[False])
+        results = results.drop(dots.index[1:]).sort_values(by=['xmin'])
+
+        # making string from symbols
         result = ''.join(map(lambda x: str(x) if x != 10 else '.', results["class"]))
         return result
 
