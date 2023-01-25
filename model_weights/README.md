@@ -1,0 +1,7 @@
+You should place this files here
+
+work_yolo_weight_detect.pt
+work_yolo_weight_recognize.pt
+work_yolo_sts_detect.pt
+work_yolo_sts_rotate.pt
+work_yolo_sts_recognize.pt
