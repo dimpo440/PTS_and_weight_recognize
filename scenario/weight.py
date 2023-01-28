@@ -16,15 +16,13 @@ YOLO_RECOGNIZE = 'model_weights/work_yolo_weight_recognize.pt'
 class Weight:
     def __init__(self, yolo_detect_weights=YOLO_DETECT, yolo_recognition_weights=YOLO_RECOGNIZE):
         self.det_model_processor = yolo.ModelLoader(weights=yolo_detect_weights).model
-        self.det_model = self.detection_model_results
         self.rec_model_processor = yolo.ModelLoader(weights=yolo_recognition_weights).model
-        self.rec_model = self.recognition_model_result
 
-    def detection_model_results(self, img):  # the result is a list with cropped images of displays
+    def det_model(self, img):  # the result is a list with cropped images of displays
         result = self.det_model_processor(img)
         return [crop['im'] for crop in result.crop(save=False)]
 
-    def recognition_model_result(self, image):  # the result is text of the field
+    def rec_model(self, image):  # the result is text of the field
         # yolo inference settings
         self.rec_model_processor.conf = 0.1
         self.rec_model_processor.conf_thres = 0.7
