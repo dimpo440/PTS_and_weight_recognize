@@ -3,7 +3,7 @@ import aimodels.yolo as yolo
 import imgprocessing.rotation as rotation
 
 # STS class contains detection and recognition model
-# Weights for them are loading on init of class
+# Weights for them are loading on class init
 # After class init several methods are available:
 # rotation_model_result will place document horizontally
 # detection_model_result crops detected fields to list
@@ -40,8 +40,6 @@ def formatting(elems_new, is_plate):
                     if all_text[int(elems_new[pos])] == \
                             tuple(replace_num_char.items())[t][0]:
                         elems_new[pos] = str(all_text.find(tuple(replace_num_char.items())[t][1]))
-                        print("- Замена", "символа в позиции", pos, "с цифры", tuple(replace_num_char.items())[t][0],
-                              "на символ", tuple(replace_num_char.items())[t][1])
 
             for pos in plate_num_pos:
                 for t in range(len(replace_num_char)):
@@ -50,8 +48,6 @@ def formatting(elems_new, is_plate):
                     if all_text[int(elems_new[pos])] == \
                             tuple(replace_num_char.items())[t][1]:
                         elems_new[pos] = str(all_text.find(tuple(replace_num_char.items())[t][0]))
-                        print("- Замена", "символа в позиции", pos, "с буквы", tuple(replace_num_char.items())[t][1],
-                              "на цифру", tuple(replace_num_char.items())[t][0])
         else:
             all_text = vin_text
             for pos in vin_num_pos:
@@ -61,8 +57,6 @@ def formatting(elems_new, is_plate):
                     if all_text[int(elems_new[pos])] == \
                             tuple(replace_num_char.items())[t][1]:
                         elems_new[pos] = str(all_text.find(tuple(replace_num_char.items())[t][0]))
-                        print("- Замена", "символа в позиции", pos, "с буквы", tuple(replace_num_char.items())[t][1],
-                              "на цифру", tuple(replace_num_char.items())[t][0])
     for element in elems_new:
         if int(element) > len(all_text) - 1:
             break
