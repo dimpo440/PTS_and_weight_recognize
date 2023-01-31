@@ -12,7 +12,7 @@ if __name__ == '__main__':
     test_choice = int(input())
     if test_choice:
         test_ves = scenario.weight.Weight()
-        print(test_ves.detect_weight(VES_TEST_IMG))
+        print(test_ves.recognize_weight(VES_TEST_IMG))
         print(test_ves.recognition_model_result(VES_TEST_IMG_CROPPED))
     else:
         test_sts = scenario.sts.STS()
