@@ -26,6 +26,8 @@ class Weight:
     def recognition_model_result(self, image):  # the result is text of the field
         # yolo inference settings
         self.rec_model_processor.conf = 0.2
+        self.rec_model_processor.iou = 0.2
+        self.rec_model_processor.agnostic = True
 
         results = self.rec_model_processor(image).pandas().xyxy[0]
 
