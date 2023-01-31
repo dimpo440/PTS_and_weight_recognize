@@ -19,13 +19,13 @@ class Weight:
         self.rec_model_processor = yolo.ModelLoader(weights=yolo_recognition_weights).model
 
     def detection_model_result(self, img):  # the result is a list with cropped images of displays
+        self.det_model_processor.iou = 0.1
         result = self.det_model_processor(img)
         return [crop['im'] for crop in result.crop(save=False)]
 
     def recognition_model_result(self, image):  # the result is text of the field
         # yolo inference settings
         self.rec_model_processor.conf = 0.2
-        # self.rec_model_processor.conf_thres = 0.7
 
         results = self.rec_model_processor(image).pandas().xyxy[0]
 
