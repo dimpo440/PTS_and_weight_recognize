@@ -15,7 +15,7 @@ YOLO_DETECT = 'model_weights/work_yolo_sts_detect.pt'
 YOLO_RECOGNIZE_VIN = 'model_weights/work_yolo_sts_vin_recognize.pt'
 YOLO_RECOGNIZE_SIGN = 'model_weights/work_yolo_sts_sign_recognize.pt'
 
-vin_text = "0123456789ABCDEFGHJKLMNPRSTUVWXYZ"
+vin_text = "0123456789ABCDEFGHJKLMNOPRSTUVWXYZ"
 plate_text = "0123456789ABEKMHOPCTYX"
 plate_num_pos = [1, 2, 3, -2, -1]
 plate_letter_pos = [0, 4, 5]
@@ -87,7 +87,7 @@ class STS:
             yolo_model = self.vin_rec_model_processor
         else:
             yolo_model = self.sign_rec_model_processor
-        yolo_model.conf = 0.15
+        yolo_model.conf = 0.1
         yolo_model.iou = 0.2
         yolo_model.agnostic = True
 
