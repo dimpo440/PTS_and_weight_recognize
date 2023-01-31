@@ -13,7 +13,7 @@ class ModelLoader:
             self.model = self.load_pretrained()
 
     def load_finetuned(self):
-        model = torch.hub.load(self.model_source, 'custom', path=self.weights)
+        model = torch.hub.load(self.model_source, 'custom', path=self.weights, verbose=False)
         return model
 
     def load_pretrained(self):

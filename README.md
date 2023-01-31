@@ -1,37 +1,45 @@
-[Русский](https://github.com/dimpo440/PTS_and_weight_recognize/blob/main/README_RU.md)
+# Распознавание данных из фото документов и данных прибора на фото 
+В проекте два сценария:
+- по распознаванию номера ТС и его VIN с фотографии СТС
+- распознавание веса детали по её фотографии
 
-# Data recognition on documents photo and mesurings data on photo
-There are two scenarios in project:
-- detection and recognition of specific fields (sign and VIN) from a photo
-- detection and recognition of weight data from photo of weights
+Для работы проекта необходимо иметь веса для yolov5 обученной на поиск требуемых полей и символов.
 
-To make this project work you need to train yolov5 for fields detection and for detection of words "svidetelstvo" and "ts" in the header of the document (for rotation use). 
+<summary>Установка</summary>
 
-For text recognition it can be used PaddleOCR model or TRocr, both of them included in the project and can be used with pretraned weights or finetuned by ourself.
-
-<summary>Install</summary>
-
-Clone repo and install [requirements.txt](https://github.com/dimpo440/PTS_and_weight_recognize/blob/main/requirements.txt)
+Clone repo and install [requirements.txt](https://github.com/dimpo440/PTS_and_weight_recognize/requirements.txt)
 in a [**Python>=3.7.0**](https://www.python.org/) environment
 
 ```python
 !git clone https://github.com/dimpo440/PTS_and_weight_recognize  # clone
-!pip install git+https://github.com/dimpo440/PTS_and_weight_recognize  # install
+!pip install -r requirements.txt  # install
 ```
-Example
+После этого в папку model_weights необходимо распаковать архив с весами моделей
+work_yolo_weight_detect.pt
+
+work_yolo_weight_recognize.pt
+
+work_yolo_sts_detect.pt
+
+work_yolo_sts_rotate.pt
+
+work_yolo_sts_vin_recognize.pt
+
+work_yolo_sts_sign_recognize.pt
+
+Архив доступен [по ссылке](https://drive.google.com/file/d/1a0DlcqHIz914NhfFdk6bHnhQxbnKQbAi/view?usp=sharing)
+
+Пример
 
 ```python
 import scenario.sts
+import scenario.weight
 
-YOLO_STS = 'YOUR_PATH'
-YOLO_ROTATE_STS = 'YOUR_PATH'
-OCR_WEIGHTS_STS = None  # or 'YOUR_PATH'. If None pretrained weights will be used.
-DETECT_MODELS = ['paddle', 'tr']
-DETECT_MODEL = DETECT_MODELS[1]  # Choose PaddleOCR - 0 or TRocr - 1
-TEST_IMG = 'YOUR_PATH'
-DEBUG = False
+TEST_IMG = 'YOUR_PATH.jpg'
 
-test_sts = scenario.sts.STS(yolo_detect_weights=YOLO_STS,
-                            yolo_rotate_weights=YOLO_ROTATE_STS,, ocr_weights = OCR_WEIGHTS_STS)
-print(test_sts.recognize_sts(TEST_IMG, detect_model=DETECT_MODEL, debug=DEBUG))
+test_sts = scenario.sts.STS()
+print(test_sts.recognize_sts(TEST_IMG))
+
+test_weight = scenario.weight.Weight()
+print(test_weight.recognize_weight(TEST_IMG))
 ```

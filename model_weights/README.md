@@ -8,4 +8,6 @@ work_yolo_sts_detect.pt
 
 work_yolo_sts_rotate.pt
 
-work_yolo_sts_recognize.pt
+work_yolo_sts_vin_recognize.pt
+
+work_yolo_sts_sign_recognize.pt
