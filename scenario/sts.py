@@ -87,7 +87,7 @@ class STS:
             yolo_model = self.vin_rec_model_processor
         else:
             yolo_model = self.sign_rec_model_processor
-        yolo_model.conf = 0.1
+        yolo_model.conf = 0.15
         yolo_model.iou = 0.2
         yolo_model.agnostic = True
 
