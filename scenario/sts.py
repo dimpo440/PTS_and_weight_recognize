@@ -15,93 +15,41 @@ YOLO_DETECT = 'model_weights/work_yolo_sts_detect.pt'
 YOLO_RECOGNIZE_VIN = 'model_weights/work_yolo_sts_vin_recognize.pt'
 YOLO_RECOGNIZE_SIGN = 'model_weights/work_yolo_sts_sign_recognize.pt'
 
-vin_symbols = "0123456789ABCDEFGHJKLMNOPRSTUVWXYZ"
-plate_symbols = "0123456789ABEKMHOPCTYX"
-plate_num_pos = [1, 2, 3, -2, -1]
-plate_letter_pos = [0, 4, 5]
-vin_num_pos = [-4, -3, -2, -1]
-replace_num_char = {'8': 'B', '5': 'S', '2': 'Z', '0': 'O'}
-IoU_thres = 0.4
-alpha = 0.6
-plate_min_len = 7
-vin_min_len = 17
-
-
-def formatting(field_symbols_classes, is_plate):
-    allowed_symbols = ''
-    text = ''
-    if len(field_symbols_classes) >= plate_min_len:
-        if is_plate:
-            allowed_symbols = plate_symbols
-            for pos in plate_letter_pos:
-                for t in range(len(replace_num_char)):
-                    if int(field_symbols_classes[pos]) > len(allowed_symbols) - 1:
-                        break
-                    if allowed_symbols[int(field_symbols_classes[pos])] == \
-                            tuple(replace_num_char.items())[t][0]:
-                        field_symbols_classes[pos] = str(allowed_symbols.find(tuple(replace_num_char.items())[t][1]))
-
-            for pos in plate_num_pos:
-                for t in range(len(replace_num_char)):
-                    if int(field_symbols_classes[pos]) > len(allowed_symbols) - 1:
-                        break
-                    if allowed_symbols[int(field_symbols_classes[pos])] == \
-                            tuple(replace_num_char.items())[t][1]:
-                        field_symbols_classes[pos] = str(allowed_symbols.find(tuple(replace_num_char.items())[t][0]))
-        else:
-            allowed_symbols = vin_symbols
-            for pos in vin_num_pos:
-                for t in range(len(replace_num_char)):
-                    if int(field_symbols_classes[pos]) > len(allowed_symbols) - 1:
-                        break
-                    if allowed_symbols[int(field_symbols_classes[pos])] == \
-                            tuple(replace_num_char.items())[t][1]:
-                        field_symbols_classes[pos] = str(allowed_symbols.find(tuple(replace_num_char.items())[t][0]))
-    for element in field_symbols_classes:
-        if int(element) > len(allowed_symbols) - 1:
-            break
-        text += allowed_symbols[int(element)]
-    return text
-
-vin_symbols = "0123456789ABCDEFGHJKLMNOPRSTUVWXYZ"
-plate_symbols = "0123456789ABEKMHOPCTYX"
-replace_num_char = {'8': 'B', '5': 'S', '2': 'Z', '0': 'O'}
-plate_letter_pos = [0, 4, 5]
-
-def formatting_2(elems_new, is_plate):
-    all_text = plate_symbols if is_plate else vin_symbols
-    text = ""
+def formatting(field_symbol_classes, is_plate):
     vin_symbols = "0123456789ABCDEFGHJKLMNOPRSTUVWXYZ"
     plate_symbols = "0123456789ABEKMHOPCTYX"
+    allowed_symbols = plate_symbols if is_plate else vin_symbols
+    text = ""
     replace_num_char = {'8': 'B', '5': 'S', '2': 'Z', '0': 'O'}
     plate_letter_pos = [0, 4, 5]
-    vin_num_pos = [len(elems_new)-1+p for p in [-4, -3, -2, -1]]
-    for pos, element in enumerate(elems_new):
-        if int(element) > len(all_text) - 1:
+    vin_num_pos = [len(field_symbol_classes) - 1 + p for p in [-4, -3, -2, -1]]
+
+    for pos, element in enumerate(field_symbol_classes):
+        if int(element) > len(allowed_symbols) - 1:
             break
         else:
             switched = False
         if is_plate:
             if pos in plate_letter_pos:
                 for k, v in replace_num_char.items():
-                    if all_text[int(element)] == k:
+                    if allowed_symbols[int(element)] == k:
                         text += v
                         switched = True
                         break
             else:
                 for v, k in replace_num_char.items():
-                    if all_text[int(element)] == k:
+                    if allowed_symbols[int(element)] == k:
                         text += v
                         switched = True
                         break
         elif pos in vin_num_pos:
             for k, v in replace_num_char.items():
-                if all_text[int(element)] == v:
+                if allowed_symbols[int(element)] == v:
                     text += k
                     switched = True
                     break
         if not switched:
-            text += all_text[int(element)]
+            text += allowed_symbols[int(element)]
     return text
 
 
@@ -133,7 +81,7 @@ class STS:
         yolo_model.agnostic = True
 
         result = yolo_model(image).pandas().xyxy[0].sort_values('xmin')
-        result = formatting_2(result['class'].values.tolist(), not cl)
+        result = formatting(result['class'].values.tolist(), not cl)
 
         return result
 
