@@ -23,7 +23,10 @@ class Weight:
         self.det_model_processor.iou = 0.5
         result = self.det_model_processor(img)
         result = [[crop['im'], crop['conf']] for crop in result.crop(save=False)]
-        return [sorted(result, key=lambda x: x[1])[0][0]]
+        if result != []:
+            return [sorted(result, key=lambda x: x[1])[0][0]]
+        else:
+            return result
 
     def recognition_model_result(self, image):  # the result is text of the field
         # yolo inference settings
