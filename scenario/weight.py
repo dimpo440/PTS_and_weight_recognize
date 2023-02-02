@@ -42,7 +42,10 @@ class Weight:
 
         # make string from symbols
         result = ''.join(map(lambda x: str(x) if x != 10 else '.', results["class"]))
-        return result
+        try:
+            return result[:result.index('.')+3]
+        except:
+            return result
 
     def recognize_weight(self, img_path):  # result is dictionary with fields
         fields_text = dict()
