@@ -2,7 +2,7 @@ import scenario.sts
 import scenario.weight
 import cv2 as cv
 
-STS_TEST_IMG = 'test/imgs/WhatsApp Image 2019-05-29 at 14.43.11.jpeg'
+STS_TEST_IMG = 'test/imgs/test_sts.jpg'
 
 VES_TEST_IMG = 'test/imgs/weight/parts_used_11_44_58_22445850_11.jpg'
 VES_TEST_IMG_CROPPED = 'test/imgs/weight/photo_2023-01-31_00.jpg'
@@ -18,9 +18,9 @@ if __name__ == '__main__':
     else:
         test_sts = scenario.sts.STS()
         img = cv.imread(STS_TEST_IMG)
-        cv.imshow('input', img)
+        #cv.imshow('input', img)
         img = test_sts.rotation_model_result(img)
-        cv.imshow('rotated', img)
+        #cv.imshow('rotated', img)
         fields_imgs = test_sts.detection_model_result(img)
         for field_img, i in fields_imgs:
             cv.imshow('field_'+str(i), field_img)
