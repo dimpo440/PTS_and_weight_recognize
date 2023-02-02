@@ -15,6 +15,7 @@ YOLO_DETECT = 'model_weights/work_yolo_sts_detect.pt'
 YOLO_RECOGNIZE_VIN = 'model_weights/work_yolo_sts_vin_recognize.pt'
 YOLO_RECOGNIZE_SIGN = 'model_weights/work_yolo_sts_sign_recognize.pt'
 
+
 def formatting(field_symbol_classes, is_plate):
     vin_symbols = "0123456789ABCDEFGHJKLMNOPRSTUVWXYZ"
     plate_symbols = "0123456789ABEKMHOPCTYX"

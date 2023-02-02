@@ -23,7 +23,7 @@ class Weight:
         self.det_model_processor.iou = 0.5
         result = self.det_model_processor(img)
         result = [[crop['im'], crop['conf']] for crop in result.crop(save=False)]
-        if result != []:
+        if result:
             return [sorted(result, key=lambda x: x[1])[0][0]]
         else:
             return result
@@ -43,8 +43,8 @@ class Weight:
         # make string from symbols
         result = ''.join(map(lambda x: str(x) if x != 10 else '.', results["class"]))
         try:
-            return result[:result.index('.')+3]
-        except:
+            return result[:result.index('.') + 3]
+        finally:
             return result
 
     def recognize_weight(self, img_path):  # result is dictionary with fields
