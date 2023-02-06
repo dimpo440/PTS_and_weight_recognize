@@ -31,18 +31,7 @@ def formatting(field_symbol_classes, is_plate):
         else:
             switched = False
         if is_plate:
-            if pos in plate_letter_pos:
-                for k, v in replace_num_char.items():
-                    if allowed_symbols[int(element)] == k:
-                        text += v
-                        switched = True
-                        break
-            else:
-                for v, k in replace_num_char.items():
-                    if allowed_symbols[int(element)] == k:
-                        text += v
-                        switched = True
-                        break
+            pass
         elif pos in vin_num_pos:
             for k, v in replace_num_char.items():
                 if allowed_symbols[int(element)] == v:
