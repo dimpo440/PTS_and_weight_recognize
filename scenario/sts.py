@@ -8,6 +8,9 @@ import imgprocessing.rotation as rotation
 # rotation_model_result will place document horizontally
 # detection_model_result crops detected fields to list
 # recognize_sts is the main method to make text from any photo of sts document
+# detection_model_boxes(img, recognition=0, vin=0) print image with boxes as matplotlib plot
+# recognition=0 means the  field detection model, recognition=1 vin=0 is for sign recognition model,
+# recognition=1 vin=1 will use vin recognition model
 
 
 YOLO_ROTATE = 'model_weights/work_yolo_sts_rotate.pt'
@@ -60,6 +63,25 @@ class STS:
     def detection_model_result(self, img):  # the result is a list with cropped images of fields and classes
         result = self.det_model_processor(img)
         return [[crop['im'], int(crop['cls'].item())] for crop in result.crop(save=False)]
+
+    def detection_model_boxes(self, img, recognition=0, vin=0):  # the result is a list with cropped images of fields and classes
+        if not recognition:
+            result = self.det_model_processor(img)
+        elif not vin:
+            result = self.sign_rec_model_processor(img)
+        else:
+            result = self.vin_rec_model_processor(img)
+
+        boxes = [[int(box.item()) for box in crop['box']] for crop in result.crop(save=False)]
+        import matplotlib.pyplot as plt
+        from matplotlib.patches import Rectangle
+        plt.imshow(img)
+        for box in boxes:
+            plt.gca().add_patch(Rectangle(box[:2],box[2]-box[0],box[3]-box[1],
+                    edgecolor='red',
+                    facecolor='none',
+                    lw=2))
+        plt.show()
 
     def recognition_model_result(self, image, cl):
         if cl:

@@ -1,6 +1,7 @@
 import scenario.sts
 import scenario.weight
 import cv2 as cv
+import matplotlib.pyplot as plt
 
 STS_TEST_IMG = 'test/imgs/test_sts.jpg'
 
@@ -22,10 +23,13 @@ if __name__ == '__main__':
         img = test_sts.rotation_model_result(img)
         #cv.imshow('rotated', img)
         fields_imgs = test_sts.detection_model_result(img)
+        print(test_sts.detection_model_boxes(img))
         for field_img, i in fields_imgs:
-            cv.imshow('field_'+str(i), field_img)
+            # cv.imshow('field_'+str(i), field_img)
+            plt.imshow(field_img)
             fields_text[i] = test_sts.recognition_model_result(field_img, bool(i))
+        plt.show()
         print(fields_text)
-        cv.waitKey(0)
-        cv.destroyAllWindows()
+        # cv.waitKey(0)
+        # cv.destroyAllWindows()
         print(test_sts.recognize_sts(STS_TEST_IMG))
