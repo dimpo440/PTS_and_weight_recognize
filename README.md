@@ -11,7 +11,7 @@ Clone repo and install [requirements.txt](https://github.com/dimpo440/PTS_and_we
 in a [**Python>=3.7.0**](https://www.python.org/) environment
 
 ```python
-!git clone -b ru_yolo_only https://github.com/dimpo440/PTS_and_weight_recognize  # clone
+!git clone -b ru_yolo_only_no_f_sign https://github.com/dimpo440/PTS_and_weight_recognize  # clone
 !pip install -r requirements.txt  # install
 ```
 После этого в папку model_weights необходимо распаковать архив с весами моделей
