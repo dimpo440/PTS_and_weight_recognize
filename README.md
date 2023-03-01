@@ -27,7 +27,7 @@ work_yolo_sts_vin_recognize.pt
 
 work_yolo_sts_sign_recognize.pt
 
-Архив доступен [по ссылке](https://drive.google.com/file/d/1a0DlcqHIz914NhfFdk6bHnhQxbnKQbAi/view?usp=sharing)
+Архив доступен [по ссылке](https://drive.google.com/drive/folders/1fiPpWhjKD2tM_XwwXcqt5WFw7juvpcuT?usp=sharing)
 
 Пример
 
